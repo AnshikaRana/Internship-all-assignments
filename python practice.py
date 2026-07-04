@@ -51,3 +51,14 @@ def count_vowels(string):
     return count
 
 print(count_vowels("Python Programming"))
+
+#8 Function to find largest element in a list
+def largest_element(numbers):
+    largest = numbers[0]
+
+    for num in numbers:
+        if num > largest:
+            largest = num
+    return largest
+
+print(largest_element([12, 45, 8, 67, 23]))
