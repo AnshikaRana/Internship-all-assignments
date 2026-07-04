@@ -174,3 +174,19 @@ def word_frequency_counter(text):
 
 text = "I love NLP. It is very easy to learn NLP. Learn and love NLP."
 print(word_frequency_counter(text))
+
+#16 Library Book Search System
+def library_book_search(library, book_name):
+    if book_name in library:
+        return f"{book_name} is available in the library."
+    else:
+        return f"{book_name} is not available in the library."
+    
+book_name = [ 
+    "Python", 
+    "Java", 
+    "C++", 
+    "Machine Learning" 
+] 
+ 
+print(library_book_search(book_name, "Python"))
