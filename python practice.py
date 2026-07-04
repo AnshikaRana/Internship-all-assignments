@@ -79,3 +79,60 @@ def reverse_string(string):
     return string[::-1]
 
 print(reverse_string("Anshika"))
+
+#11 Function to find prime numbers up to n
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+        
+    return True
+print(is_prime(23))
+
+#12 Function to seperate Even and Odd Numbers
+def separate_even_odd(numbers):
+    even = []
+    odd = []
+
+    for num in numbers:
+        if num % 2 == 0:
+            even.append(num)
+        else:
+            odd.append(num)
+
+    return even, odd
+
+even, odd = separate_even_odd([1, 2, 3, 4, 5, 6, 7, 8])
+
+print("Even numbers:", even)
+print("Odd numbers:", odd)
+
+#13 Building a Student Result Management System
+def analyze_results(students): 
+
+    average = sum(students.values()) / len(students)  
+    topper = max(students, key=students.get)
+ 
+    count = 0 
+ 
+    for marks in students.values(): 
+        if marks > average: 
+            count += 1 
+ 
+    return average, topper, count
+ 
+students = { 
+    "Aman": 85, 
+    "Riya": 95, 
+    "Rahul": 72, 
+    "Priya": 80 
+} 
+ 
+average, topper, count = analyze_results(students) 
+ 
+print("Average:", average) 
+print("Topper:", topper)
+print("Above Average:", count)
+print("Average students:", [name for name, marks in students.items() if marks > average])
