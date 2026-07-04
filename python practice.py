@@ -137,4 +137,23 @@ print("Topper:", topper)
 print("Above Average:", count)
 print("Average students:", [name for name, marks in students.items() if marks > average])
 
-#14
+#14 Inventory Analyzer
+def inventory_analyzer(products):
+    total = sum(products.values())
+
+    expensive = max(products, key=products.get)
+    cheap = min(products, key=products.get)
+    return total, expensive, cheap
+
+inventory = { 
+    "Laptop": 50000, 
+    "Mouse": 800, 
+    "Keyboard": 2000, 
+    "Monitor": 15000 
+}
+
+total, expensive, cheap = inventory_analyzer(inventory)
+
+print ("Total Inventory Value:", total)
+print ("Most Expensive Product:", expensive)
+print ("Cheapest Product:", cheap)
