@@ -30,3 +30,16 @@ def maximum(a,b):
     else:
         return b
 print(maximum(16,61))
+
+#6 Function to find the factorial of a number
+def factorial(num):
+    result = 1
+    for i in range (1, num + 1):
+        result *= i
+
+    return result
+print(factorial(4))
+
+#7 Function to count vowels
+def count_vowels(string):
+    
