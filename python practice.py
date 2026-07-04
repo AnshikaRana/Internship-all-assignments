@@ -217,3 +217,24 @@ absent, percentage = attendance_report(students, present)
 print("Present Students:", present)
 print("Absent Students:", absent)
 print("Attendance Percentage:", percentage)
+
+#17 Shopping Cart Billing System
+def shopping_cart_billing(cart):
+    bill = sum(cart.values())
+    return bill
+
+cart = { 
+    "Shoes": 2500, 
+    "Bag": 1800, 
+    "Watch": 2200 
+}
+
+bill = shopping_cart_billing(cart)
+
+if bill > 5000:
+    print("You are eligible for a discount of 10%")
+    bill = bill * 0.9
+    print ("Total Bill after discount:", bill)
+
+else:
+    print ("Total Bill:", bill)
