@@ -258,3 +258,86 @@ above_average, highest, average = cricket_analysis(list(runs.keys()), list(runs.
 print("Players Scoring Above Average:", above_average)
 print("Highest Score:", highest)
 print("Average Runs:", average)
+
+#20 Student Database Analyzer (Mini Project)
+def student_analysis(records):
+    total = 0
+    topper = records[0]
+    grades = { 
+        "A": 0, 
+        "B": 0, 
+        "C": 0, 
+        "D": 0 
+    }
+    above_80 = []
+
+    for student in records:
+        marks = student["marks"]
+        total += marks
+
+        if marks > topper["marks"]:
+            topper = student
+
+        if marks >= 90:
+            grades["A"] += 1
+        elif marks >= 75:
+            grades["B"] += 1
+        elif marks >= 60:
+            grades["C"] += 1
+        else:
+            grades["D"] += 1
+
+        if marks > 80:
+            above_80.append(list(student["name"]))
+    
+    average = total / len(records)
+    return average, topper["name"], grades, above_80
+
+students = [
+    {"name": "Aman", "marks": 85}, 
+    {"name": "Riya", "marks": 95}, 
+    {"name": "Rahul", "marks": 68}, 
+    {"name": "Priya", "marks": 78}, 
+    {"name": "Karan", "marks": 55} 
+]
+
+result = student_analysis(students)
+
+print("Topper:", result[1]) 
+print("Average Marks:", result[0]) 
+print("Grades Distribution:", result[2]) 
+print("Above 80:", result[3]) 
+
+
+#PRACTICE PROBLEMS
+'''Employee Performance Analyzer'''
+def employee_analysis(employees):
+    count = 0
+    count2 = 0
+
+    average_score = sum(employees.values())/ len(employees.items())
+    highest_scorer = max(employees, key=employees.get)
+
+    for score in employees.values():
+        if score > average_score:
+            list_of_employees = [name for name, score in employees.items() if score > average_score]
+            list_of_employees.append
+            count += 1
+
+    count2 = len([name for name, score in employees.items() if score < 60])
+    return count, highest_scorer, average_score, list_of_employees, count2
+
+employees = { 
+"Aman": 78, 
+"Riya": 92, 
+"Rahul": 55, 
+"Priya": 81, 
+"Karan": 48 
+}
+
+count, highest_scorer, average_score, list_of_employees, count2 = employee_analysis(employees)
+
+print ("Highest Performing Employee:", highest_scorer)
+print ("Average Performance Score:", average_score)
+print ("Employees Performing Above Average:", list_of_employees)
+print ("Employees Scoring Below 60:", count2)
