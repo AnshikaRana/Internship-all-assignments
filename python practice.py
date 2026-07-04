@@ -190,3 +190,30 @@ book_name = [
 ] 
  
 print(library_book_search(book_name, "Python"))
+
+#17 Attendace Report Generator
+def attendance_report(all_students, present_students):
+    absent = set(all_students) - set(present_students)
+
+    percentage = (len(present_students) / len(all_students)) * 100
+    return absent, percentage
+
+students = [ 
+    "Aman", 
+    "Riya", 
+    "Rahul", 
+    "Priya", 
+    "Karan" 
+] 
+ 
+present = [ 
+    "Aman", 
+    "Priya", 
+    "Rahul" 
+] 
+ 
+absent, percentage = attendance_report(students, present)
+
+print("Present Students:", present)
+print("Absent Students:", absent)
+print("Attendance Percentage:", percentage)
