@@ -240,3 +240,21 @@ else:
     print ("Total Bill:", bill)
 
 #19 Cricket Statistics Analyzer
+def cricket_analysis(players, scores):
+    average = sum(scores) / len(players)
+    highest = max(scores)
+    above_average = [player for player, score in zip(players, scores) if score > average]
+
+    return above_average, highest, average
+
+runs = { 
+    "Virat": 82, 
+    "Gill": 45, 
+    "Rohit": 71, 
+    "Pant": 38 
+}
+
+above_average, highest, average = cricket_analysis(list(runs.keys()), list(runs.values()))
+print("Players Scoring Above Average:", above_average)
+print("Highest Score:", highest)
+print("Average Runs:", average)
