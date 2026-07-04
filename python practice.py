@@ -238,3 +238,5 @@ if bill > 5000:
 
 else:
     print ("Total Bill:", bill)
+
+#19 Cricket Statistics Analyzer
