@@ -157,3 +157,20 @@ total, expensive, cheap = inventory_analyzer(inventory)
 print ("Total Inventory Value:", total)
 print ("Most Expensive Product:", expensive)
 print ("Cheapest Product:", cheap)
+
+#15 Word Frequency Counter
+def word_frequency_counter(text):
+    words = text.split()
+    frequency = {}
+
+    for word in words:
+        word = word.lower()
+        if word in frequency:
+            frequency[word] += 1
+        else:
+            frequency[word] = 1
+
+    return frequency
+
+text = "I love NLP. It is very easy to learn NLP. Learn and love NLP."
+print(word_frequency_counter(text))
