@@ -62,3 +62,14 @@ def largest_element(numbers):
     return largest
 
 print(largest_element([12, 45, 8, 67, 23]))
+
+#9 Function to find frequency of an element
+def frequency(numbers, element):
+    count = 0
+
+    for num in numbers:
+        if num == element:
+            count += 1
+    return count
+
+print(frequency([1, 2, 3, 4, 2, 5, 2], 2))
