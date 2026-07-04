@@ -73,3 +73,9 @@ def frequency(numbers, element):
     return count
 
 print(frequency([1, 2, 3, 4, 2, 5, 2], 2))
+
+#10 Function to reverse a string
+def reverse_string(string):
+    return string[::-1]
+
+print(reverse_string("Anshika"))
