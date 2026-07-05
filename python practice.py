@@ -367,3 +367,24 @@ print("Least Selling Product:", least_selling_product)
 print("Products with Sales Above 100:", list_of_products)
 
 '''Student Attendance Management System'''
+def attendance_summary(all_students, present_students):
+    absent_students = set(all_students) - set(present_students)
+    attendance_percentage = (len(present_students) / len(all_students)) * 100
+
+    a_letter_students = [name for name in all_students if name.startswith("A")]
+    if attendance_percentage > 75:
+        check = True
+    else:
+        check = False
+
+    return absent_students, attendance_percentage, a_letter_students, check
+
+all_students = ["Aman", "Riya", "Rahul", "Ankit", "Priya", "Karan"] 
+present_students = ["Aman", "Rahul", "Ankit", "Priya"]
+
+absent_students, attendance_percentage, a_letter_students, check = attendance_summary(all_students, present_students)
+
+print("Absent Students:", absent_students)
+print("Attendance Percentage:", attendance_percentage)
+print("Students with Names Starting with 'A':", a_letter_students)
+print("Is the Attendance above 75%:", check)
