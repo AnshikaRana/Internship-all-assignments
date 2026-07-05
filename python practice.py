@@ -388,3 +388,28 @@ print("Absent Students:", absent_students)
 print("Attendance Percentage:", attendance_percentage)
 print("Students with Names Starting with 'A':", a_letter_students)
 print("Is the Attendance above 75%:", check)
+
+''' Library Analytics System'''
+def library_reports(books):
+    count = len(books)
+    unique_books = len(set(books))
+    repeated_books = [book for book in set(books) if books.count(book) > 1]
+    arranged_books = sorted(books)
+
+    return count, unique_books, repeated_books, arranged_books
+
+books = [ 
+"Python", 
+"Java", 
+"Python", 
+"C++", 
+"Java", 
+"Machine Learning" 
+]
+
+count, unique_books, repeated_books, arranged_books = library_reports(books)
+
+print("Total Number of Books:", count)
+print("Number of Unique Books:", unique_books)
+print("Repeated Books:", repeated_books)
+print("Books Arranged in Alphabetical Order:", arranged_books)
