@@ -341,3 +341,29 @@ print ("Highest Performing Employee:", highest_scorer)
 print ("Average Performance Score:", average_score)
 print ("Employees Performing Above Average:", list_of_employees)
 print ("Employees Scoring Below 60:", count2)
+
+'''Online Store Sales Report'''
+def sales_report(products):
+    total_sales = sum(products.values())
+    best_selling_product= max(products, key=products.get)
+    least_selling_product = min(products, key=products.get)
+
+    list_of_products = [name for name, sales in products.items() if sales > 100]
+    return total_sales, best_selling_product, least_selling_product, list_of_products
+
+products = { 
+"Laptop": 120, 
+"Mouse": 85, 
+"Keyboard": 60, 
+"Monitor": 150, 
+"Headphones": 95 
+}
+
+total_sales, best_selling_product, least_selling_product, list_of_products = sales_report(products)
+
+print("Total Sales:", total_sales)
+print("Best Selling Product:", best_selling_product)
+print("Least Selling Product:", least_selling_product)
+print("Products with Sales Above 100:", list_of_products)
+
+'''Student Attendance Management System'''
