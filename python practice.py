@@ -389,7 +389,7 @@ print("Attendance Percentage:", attendance_percentage)
 print("Students with Names Starting with 'A':", a_letter_students)
 print("Is the Attendance above 75%:", check)
 
-''' Library Analytics System'''
+'''Library Analytics System'''
 def library_reports(books):
     count = len(books)
     unique_books = len(set(books))
@@ -413,3 +413,46 @@ print("Total Number of Books:", count)
 print("Number of Unique Books:", unique_books)
 print("Repeated Books:", repeated_books)
 print("Books Arranged in Alphabetical Order:", arranged_books)
+
+'''University Result Processing System (Mini Project)'''
+def result_analysis(students):
+    topper = max(students, key=lambda student: student["marks"]) ["name"]
+    average_marks = sum(student["marks"] for student in students) / len(students)
+    passed_students = [student for student in students if student["marks"] >= 40]
+
+    grade_distribution = {
+    "A": 0,
+    "B": 0,
+    "C": 0,
+    "D": 0
+    }
+
+    for student in students:
+        marks = student["marks"]
+        if marks >= 90:
+            grade_distribution["A"] += 1
+        elif 75 <= marks <= 89:
+            grade_distribution["B"] += 1
+        elif 60 <= marks <= 74:
+            grade_distribution["C"] += 1
+        else:
+            grade_distribution["D"] += 1
+
+    above_average_students = [student["name"] for student in students if student["marks"] > average_marks]
+    percentage_passed_students = (len(passed_students) / len(students)) * 100
+
+    return topper, average_marks, passed_students, above_average_students, percentage_passed_students, grade_distribution
+
+students = [ 
+{"name": "Aman", "marks": 85}, 
+{"name": "Riya", "marks": 95}, 
+{"name": "Rahul", "marks": 38}, 
+{"name": "Priya", "marks": 72}, 
+{"name": "Karan", "marks": 58}]
+
+topper, average_marks, passed_students, above_average_students, percentage_passed_students, grade_distribution = result_analysis(students)
+
+print("Topper:", topper)
+print("Average Marks:", average_marks)
+print("Students scoring above average:", above_average_students)
+print("Percentage of Students Passed:", percentage_passed_students, "%")
