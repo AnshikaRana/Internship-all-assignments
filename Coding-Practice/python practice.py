@@ -456,3 +456,121 @@ print("Topper:", topper)
 print("Average Marks:", average_marks)
 print("Students scoring above average:", above_average_students)
 print("Percentage of Students Passed:", percentage_passed_students, "%")
+
+'''Tournament Ranking System'''
+
+def add_match_result(matches, team1, team2, score1, score2):
+    """Store a single match result."""
+    matches.append({
+        "team1": team1,
+        "team2": team2,
+        "score1": score1,
+        "score2": score2
+    })
+
+
+def initialize_table(matches):
+    """Create an empty stats entry for every team found in matches."""
+    table = {}
+    for match in matches:
+        for team in (match["team1"], match["team2"]):
+            if team not in table:
+                table[team] = {
+                    "played": 0,
+                    "won": 0,
+                    "drawn": 0,
+                    "lost": 0,
+                    "goals_for": 0,
+                    "goals_against": 0,
+                    "points": 0
+                }
+    return table
+
+
+def update_table(table, matches):
+    """Fill in stats based on match results."""
+    for match in matches:
+        t1, t2 = match["team1"], match["team2"]
+        s1, s2 = match["score1"], match["score2"]
+
+        table[t1]["played"] += 1
+        table[t2]["played"] += 1
+        table[t1]["goals_for"] += s1
+        table[t1]["goals_against"] += s2
+        table[t2]["goals_for"] += s2
+        table[t2]["goals_against"] += s1
+
+        if s1 > s2:
+            table[t1]["won"] += 1
+            table[t1]["points"] += 3
+            table[t2]["lost"] += 1
+        elif s2 > s1:
+            table[t2]["won"] += 1
+            table[t2]["points"] += 3
+            table[t1]["lost"] += 1
+        else:
+            table[t1]["drawn"] += 1
+            table[t2]["drawn"] += 1
+            table[t1]["points"] += 1
+            table[t2]["points"] += 1
+
+    return table
+
+
+def calculate_goal_difference(table):
+    """Add goal difference to each team's stats."""
+    for team in table:
+        table[team]["goal_diff"] = table[team]["goals_for"] - table[team]["goals_against"]
+    return table
+
+
+def get_sorted_rankings(table):
+    """Sort teams by points, then goal difference, then goals scored."""
+    teams = list(table.items())
+    teams.sort(
+        key=lambda x: (x[1]["points"], x[1]["goal_diff"], x[1]["goals_for"]),
+        reverse=True
+    )
+    return teams
+
+
+def display_rankings(rankings):
+    """Print a formatted points table."""
+    print(f"{'Rank':<5}{'Team':<12}{'P':<4}{'W':<4}{'D':<4}{'L':<4}{'GF':<4}{'GA':<4}{'GD':<4}{'Pts':<4}")
+    for i, (team, stats) in enumerate(rankings, start=1):
+        print(f"{i:<5}{team:<12}{stats['played']:<4}{stats['won']:<4}"
+              f"{stats['drawn']:<4}{stats['lost']:<4}{stats['goals_for']:<4}"
+              f"{stats['goals_against']:<4}{stats['goal_diff']:<4}{stats['points']:<4}")
+
+
+def get_winner_and_runner_up(rankings):
+    """Return the top two teams."""
+    winner = rankings[0][0] if len(rankings) > 0 else None
+    runner_up = rankings[1][0] if len(rankings) > 1 else None
+    return winner, runner_up
+
+def main():
+    matches = []
+
+    add_match_result(matches, "India", "Australia", 3, 1)
+    add_match_result(matches, "England", "Pakistan", 2, 2)
+    add_match_result(matches, "India", "England", 1, 0)
+    add_match_result(matches, "Australia", "Pakistan", 2, 3)
+    add_match_result(matches, "India", "Pakistan", 4, 0)
+    add_match_result(matches, "Australia", "England", 1, 1)
+
+    table = initialize_table(matches)
+    table = update_table(table, matches)
+    table = calculate_goal_difference(table)
+
+    rankings = get_sorted_rankings(table)
+
+    print("Tournament Points Table:\n")
+    display_rankings(rankings)
+
+    winner, runner_up = get_winner_and_runner_up(rankings)
+    print(f"Winner: {winner}")
+    print(f"Runner-up: {runner_up}")
+
+if __name__ == "__main__":
+    main()
