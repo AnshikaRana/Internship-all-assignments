@@ -36,5 +36,16 @@ tokens1 = word_tokenize("Nlp is easy for beginners")
 print(tokens1) 
 print([w for w in tokens1 if w not in stop_words])
 
+#6 Stemming
+from nltk.stem import PorterStemmer
+stemmer = PorterStemmer()
+print(stemmer.stem("running"))
+print(stemmer.stem("studies"))
+print(stemmer.stem("gaming"))
 
-#STEMMING
+words = ['playing', 'played', 'plays']
+print([stemmer.stem(w) for w in words])
+
+#7 Lemmatization
+from nltk.stem import WordNetLemmatizer
+nltk.download("wordnet")
