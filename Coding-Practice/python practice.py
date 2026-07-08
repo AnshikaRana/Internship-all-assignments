@@ -574,3 +574,110 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+'''Expense Tracker'''
+expenses = []
+def add_expense(date, category, amount):
+    """Add a single expense entry to the expenses list."""
+    entry = {
+        "date": date, # format: "YYYY-MM-DD"
+        "category": category, # e.g. "Food", "Travel", "Bills"
+        "amount": amount # numeric value
+    }
+    expenses.append(entry)
+    print(f"Added: {date} | {category} | ₹{amount}")
+ 
+ 
+def get_month(date_str):
+    """Extract the 'YYYY-MM' part from a date string."""
+    return date_str[:7]
+ 
+ 
+def monthly_expense(expenses, month):
+    """
+    Return total expense for a given month.
+    month format: "YYYY-MM"
+    """
+    total = 0
+    for e in expenses:
+        if get_month(e["date"]) == month:
+            total += e["amount"]
+    return total
+ 
+ 
+def category_wise_expense(expenses):
+    """
+    Return a dictionary with total expense per category.
+    Example: {"Food": 1200, "Travel": 500}
+    """
+    category_totals = {}
+    for e in expenses:
+        cat = e["category"]
+        amt = e["amount"]
+        if cat in category_totals:
+            category_totals[cat] += amt
+        else:
+            category_totals[cat] = amt
+    return category_totals
+ 
+ 
+def highest_spending_category(category_totals):
+    """Return the category with the highest total spending."""
+    if not category_totals:
+        return None
+    return max(category_totals, key=category_totals.get)
+ 
+ 
+def average_daily_expense(expenses):
+    """
+    Return the average expense per unique day recorded.
+    """
+    if not expenses:
+        return 0
+ 
+    daily_totals = {}
+    for e in expenses:
+        date = e["date"]
+        daily_totals[date] = daily_totals.get(date, 0) + e["amount"]
+ 
+    total_spent = sum(daily_totals.values())
+    num_days = len(daily_totals)
+    return total_spent / num_days
+ 
+ 
+def print_summary(expenses, month):
+    """Print a full summary report for a given month."""
+
+    print(f"EXPENSE SUMMARY REPORT - {month}")
+ 
+    total_month = monthly_expense(expenses, month)
+    print(f"Total Monthly Expense: ₹{total_month}")
+ 
+    cat_totals = category_wise_expense(expenses)
+    print("\nCategory-wise Expense:")
+    for cat, amt in cat_totals.items():
+        print(f"  {cat}: ₹{amt}")
+ 
+    top_category = highest_spending_category(cat_totals)
+    print(f"\nHighest Spending Category: {top_category}")
+ 
+    avg_daily = average_daily_expense(expenses)
+    print(f"Average Daily Expense: ₹{avg_daily:.2f}")
+
+ 
+def main():
+    # Sample expense entries
+    add_expense("2025-07-01", "Food", 250)
+    add_expense("2025-07-01", "Travel", 100)
+    add_expense("2025-07-02", "Food", 180)
+    add_expense("2025-07-03", "Bills", 1200)
+    add_expense("2025-07-03", "Food", 300)
+    add_expense("2025-07-05", "Entertainment", 500)
+    add_expense("2025-07-05", "Travel", 150)
+    add_expense("2025-07-07", "Food", 220)
+
+    print_summary(expenses, "2025-07")
+
+if __name__ == "__main__":
+    main()
