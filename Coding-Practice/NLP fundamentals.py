@@ -49,3 +49,6 @@ print([stemmer.stem(w) for w in words])
 #7 Lemmatization
 from nltk.stem import WordNetLemmatizer
 nltk.download("wordnet")
+lemmatizer = WordNetLemmatizer()
+words1 = ['playing', 'studies', 'jumps']
+print([lemmatizer.lemmatize(w) for w in words1])
