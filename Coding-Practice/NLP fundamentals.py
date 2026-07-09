@@ -52,3 +52,18 @@ nltk.download("wordnet")
 lemmatizer = WordNetLemmatizer()
 words1 = ['playing', 'studies', 'jumps']
 print([lemmatizer.lemmatize(w) for w in words1])
+
+#One-Hot Encoding
+import numpy as np
+vocab = ["ai", "data", "learning", "nlp"]
+
+def one_hot(word, vocab):
+    vector = np.zeros(len(vocab))
+    
+    if word in vocab:
+        vector[vocab.index(word)] = 1
+
+    return vector
+
+for word in vocab:
+    print(word, "-", one_hot(word, vocab))
