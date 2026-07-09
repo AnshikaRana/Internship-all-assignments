@@ -67,3 +67,13 @@ def one_hot(word, vocab):
 
 for word in vocab:
     print(word, "-", one_hot(word, vocab))
+
+#Sentence Binary Encoding
+from sklearn.feature_extraction.text import CountVectorizer
+sentences = ['I Love NLP', 'I love AI']
+
+vectorizer = CountVectorizer(binary=True) 
+
+x = vectorizer.fit_transform(sentences)
+print(vectorizer.get_feature_names_out())
+print(x.toarray())
