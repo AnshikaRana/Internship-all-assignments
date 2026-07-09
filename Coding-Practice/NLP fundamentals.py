@@ -110,3 +110,10 @@ print(tfidf_vectorizer.get_feature_names_out)
 
 print("\nTF-IDF Matrix:")
 print(tfidf_matrix.toarray())
+
+#POS tagging assigns *grammatical roles* to words
+from nltk import pos_tag
+
+nltk.download('averaged_perceptron_tagger_eng')
+tokens2 = word_tokenize('I love NLP')
+print(pos_tag(tokens2))
