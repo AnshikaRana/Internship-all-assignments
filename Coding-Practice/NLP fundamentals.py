@@ -53,7 +53,7 @@ lemmatizer = WordNetLemmatizer()
 words1 = ['playing', 'studies', 'jumps']
 print([lemmatizer.lemmatize(w) for w in words1])
 
-#One-Hot Encoding
+#Word level One-Hot Encoding
 import numpy as np
 vocab = ["ai", "data", "learning", "nlp"]
 
@@ -68,7 +68,7 @@ def one_hot(word, vocab):
 for word in vocab:
     print(word, "-", one_hot(word, vocab))
 
-#Sentence Binary Encoding
+#Document Level One-Hot Encoding
 from sklearn.feature_extraction.text import CountVectorizer
 sentences = ['I Love NLP', 'I love AI']
 
@@ -77,3 +77,11 @@ vectorizer = CountVectorizer(binary=True)
 x = vectorizer.fit_transform(sentences)
 print(vectorizer.get_feature_names_out())
 print(x.toarray())
+
+#Bag of Words
+vectorizer = CountVectorizer()
+sentence = ['I love love NLP. I also love pizza', 'I love AI. AI is also easy']
+X = vectorizer.fit_transform(sentence)
+
+print(vectorizer.get_feature_names_out())
+print(X.toarray())
