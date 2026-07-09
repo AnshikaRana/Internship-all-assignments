@@ -85,3 +85,28 @@ X = vectorizer.fit_transform(sentence)
 
 print(vectorizer.get_feature_names_out())
 print(X.toarray())
+
+#Bag of Words Matrix
+from sklearn.feature_extraction.text import CountVectorizer
+documents = ["I love love NLP", "I love AI", "NLP and AI are powerful"]
+
+vectorizer = CountVectorizer(stop_words='english')
+bow_matrix = vectorizer.fit_transform(documents)
+print("Vocabulary (column order):")
+print(vectorizer.get_feature_names_out())
+
+print("\nBag of Words Matrix:")
+print(bow_matrix.toarray())
+
+#TF-IDF Vectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+documents1 = ["I love love NLP", "I love AI", "NLP and AI are powerful"]
+
+tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+
+tfidf_matrix = tfidf_vectorizer.fit_transform(documents1)
+print("Vocabulary (column order):")
+print(tfidf_vectorizer.get_feature_names_out)
+
+print("\nTF-IDF Matrix:")
+print(tfidf_matrix.toarray())
