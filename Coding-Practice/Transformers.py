@@ -21,3 +21,6 @@ print("\nResult 4:",result4)
 
 #TEXT GENERATION PIPELINE
 
+text_generator = pipeline("text-generation", model = "distilbert/distilgpt2")
+generated_text = text_generator("Today is a rainy day in Delhi.")
+print("\nGenerated Text: ", generated_text[0]["generated_text"])
