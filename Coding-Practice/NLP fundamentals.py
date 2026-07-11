@@ -117,3 +117,12 @@ from nltk import pos_tag
 nltk.download('averaged_perceptron_tagger_eng')
 tokens2 = word_tokenize('I love NLP')
 print(pos_tag(tokens2))
+
+#NER identifies context of used words
+import spacy
+nlp = spacy.load("en_core_web_sm")
+
+doc1 = nlp("Elon Musk founded SpaceX in 2002 in America")
+
+for ent in doc1.ents:
+    print(ent.text, ent.label_)
